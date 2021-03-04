@@ -36,7 +36,7 @@ function set_php() {
     pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && pecl install imagick \
-    && docker-php-ext-enable redis xdebug gd imagick
+    && docker-php-ext-enable redis xdebug imagick
     sed -i "s/www-data/www/g" /usr/local/etc/php-fpm.d/www.conf
     rm -rf /var/lib/apt/lists/*
 }
