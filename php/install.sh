@@ -1,6 +1,7 @@
 #!/bin/bash
 #update system
 apt-get update
+apt-get install -y wget
 #install nginx
 function install_nginx() {
 	cd /usr/local
@@ -17,7 +18,6 @@ function install_nginx() {
 	#备份配置文件
 	cd /usr/local/nginx/conf
 	cp nginx.conf nginx.conf.bak
-	apt-get install -y wget
 	wget -P /usr/local/nginx/conf https://github.com/helloxz/dnmp/raw/main/php/nginx.conf
 }
 
@@ -37,7 +37,7 @@ function set_php() {
     && docker-php-ext-enable redis xdebug
 }
 
-install_nginx && setting
+install_nginx && set_php
 
 echo '-----------------------------'
 echo 'nginx + php install success.'
