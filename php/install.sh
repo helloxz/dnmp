@@ -13,8 +13,8 @@ function install_nginx() {
 	tar -zxvf xcdn-binary-1.18-debian.tar.gz
 	rm -rf xcdn-binary-1.18-debian.tar.gz
 	#add env
-	echo "export PATH=$PATH:/usr/local/nginx/sbin" >> /etc/profile
-	export PATH=$PATH:'/usr/local/nginx/sbin'
+	#echo "export PATH=$PATH:/usr/local/nginx/sbin" >> /etc/profile
+	#export PATH=$PATH:'/usr/local/nginx/sbin'
 	#备份配置文件
 	cd /usr/local/nginx/conf
 	cp nginx.conf nginx.conf.bak
@@ -29,12 +29,15 @@ function set_php() {
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libpng-dev \
+        libmagickwand-dev --no-install-recommends \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
     #install xdebug and redis
     pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
-    && docker-php-ext-enable redis xdebug
+    && docker-php-ext-enable redis xdebug gd imagick
+    sed -i "s/www-data/www/g" /usr/local/etc/php-fpm.d/www.conf
+    rm -rf /var/lib/apt/lists/*
 }
 
 install_nginx && set_php
