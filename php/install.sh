@@ -38,7 +38,7 @@ function set_php() {
 }
 
 install_nginx && set_php
-
+chmod +x /usr/sbin/run.sh
 echo '-----------------------------'
 echo 'nginx + php install success.'
 echo '-----------------------------'
