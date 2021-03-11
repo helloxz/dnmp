@@ -1,4 +1,4 @@
-FROM php:7.3-fpm
+FROM php:7.3-fpm-alpine3.12
 #设置时区
 ENV TZ=Asia/Shanghai
 #工作目录
