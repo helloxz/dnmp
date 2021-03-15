@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #start nginx
 /usr/sbin/nginx
 echo 'start nginx success.'

@@ -42,6 +42,8 @@ function set_php(){
 #清理工作
 function run_clean(){
 	apk del autoconf gcc musl-dev g++ zlib-dev make wget
+	#清理编译
+	rm -rf /var/cache/apk/*
 }
 install_nginx && set_php && run_clean
 
