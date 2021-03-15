@@ -20,6 +20,7 @@ chmod +x /usr/sbin/run.sh
 function install_nginx() {
 	#安装nginx
 	apk add nginx
+	mkdir -p /run/nginx/
 	#wget -P /etc/nginx https://github.com/helloxz/dnmp/raw/main/php/nginx.conf
 }
 #设置PHP
