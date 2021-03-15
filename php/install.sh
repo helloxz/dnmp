@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #更新软件
 apk update
 #安装timezone
@@ -19,7 +19,7 @@ apk add wget
 function install_nginx() {
 	#安装nginx
 	apk add nginx
-	wget -P /etc/nginx https://github.com/helloxz/dnmp/raw/main/php/nginx.conf
+	#wget -P /etc/nginx https://github.com/helloxz/dnmp/raw/main/php/nginx.conf
 }
 #设置PHP
 function set_php(){
@@ -38,7 +38,11 @@ function set_php(){
     && docker-php-ext-enable redis xdebug
 }
 
-
+#清理工作
+function run_clean(){
+	apk del autoconf gcc musl-dev g++ zlib-dev make wget
+}
+install_nginx && set_php && run_clean
 
 echo '-----------------------------'
 echo 'nginx + php install success.'
