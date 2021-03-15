@@ -26,7 +26,7 @@ function install_nginx() {
 #设置PHP
 function set_php(){
 	#安装依赖
-	apk add autoconf gcc musl-dev g++ zlib-dev make
+	apk add --no-cache autoconf gcc musl-dev g++ zlib-dev make libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev
 	#安装GD库 依赖
 	#apk add libpng-dev
 	#设置php.ini
@@ -34,6 +34,7 @@ function set_php(){
 	#zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so
 	#sed -i "s/www-data/www/g" /usr/local/etc/php-fpm.d/www.conf
 	#安装扩展
+	docker-php-ext-install gd
 	pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
     && docker-php-ext-enable redis xdebug
@@ -41,7 +42,7 @@ function set_php(){
 
 #清理工作
 function run_clean(){
-	apk del autoconf gcc musl-dev g++ zlib-dev make wget
+	apk del autoconf gcc musl-dev g++ zlib-dev make libpng libpng-dev libjpeg-turbo-dev libwebp-dev zlib-dev libxpm-dev
 	#清理编译
 	rm -rf /var/cache/apk/*
 }
