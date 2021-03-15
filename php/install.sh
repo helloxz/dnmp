@@ -13,6 +13,7 @@ date
 apk del tzdata
 #安装wget
 apk add wget
+chmod +x /usr/sbin/run.sh
 
 
 #安装nginx
