@@ -31,8 +31,7 @@ function set_php(){
 	#设置php.ini
 	cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 	#zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20180731/xdebug.so
-	#
-	sed -i "s/www-data/www/g" /usr/local/etc/php-fpm.d/www.conf
+	#sed -i "s/www-data/www/g" /usr/local/etc/php-fpm.d/www.conf
 	#安装扩展
 	pecl install redis-5.1.1 \
     && pecl install xdebug-2.8.1 \
