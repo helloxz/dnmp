@@ -20,6 +20,6 @@ RUN apk del freetype-dev libjpeg-turbo-dev libpng-dev icu-dev libxml2-dev libxsl
 COPY ./www.conf /usr/local/etc/php-fpm.d/www.conf
 
 # 添加自定义的PHP配置文件
-COPY custom-php.ini $PHP_INI_DIR/conf.d/
+COPY ./php.ini $PHP_INI_DIR/conf.d/
 
 EXPOSE 9074
