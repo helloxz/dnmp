@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine
+FROM php:7.4-fpm-alpine3.13
 
 # 安装gd扩展和其他扩展的依赖
 RUN apk add --no-cache freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev libpng libjpeg-turbo \
