@@ -8,8 +8,10 @@ services:
     network_mode: "host"
     volumes:
       - ../wwwroot:/var/www/html
-      - ./data:/data/xcdn
       - ./conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./conf/vhost:/usr/local/nginx/conf/vhost
+      - ./conf/stream:/usr/local/nginx/conf/stream
+      - ./logs:/usr/local/nginx/logs
       
     restart:
       always
