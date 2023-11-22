@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  php-fpm:
+    image: helloz/php:7.4-fpm-alpine
+    network_mode: host
+    volumes:
+      - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./log:/usr/local/log
+      - ../wwwroot:/var/www/html
+    restart: on-failure

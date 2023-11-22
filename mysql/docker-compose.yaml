@@ -1,0 +1,11 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:8-debian
+    container_name: mysql8
+    env_file: .env
+    restart: always
+    network_mode: host
+    volumes:
+      - './data:/var/lib/mysql'  
+      - './my.cnf:/etc/mysql/my.cnf'

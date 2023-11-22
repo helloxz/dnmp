@@ -5,9 +5,9 @@ RUN apk add --no-cache autoconf g++ make libxslt libxslt-dev libxml2 libxml2-dev
     && docker-php-ext-configure gd --with-jpeg --with-freetype \
     && docker-php-ext-install gd bcmath exif gettext intl mysqli pcntl pdo_mysql shmop soap sockets sysvsem xmlrpc xsl zip opcache \
     && apk add --no-cache imagemagick imagemagick-dev \ 
-    && yes | pecl install imagick \ 
+    && yes | pecl install imagick-3.7.0 \ 
     && docker-php-ext-enable imagick \
-    && pecl install redis \ 
+    && pecl install redis-6.0.2 \ 
     && no | docker-php-ext-enable redis \
     && apk del freetype-dev libjpeg-turbo-dev libpng-dev libxml2-dev libxslt-dev autoconf g++ make imagemagick-dev \ 
     && rm -rf /var/cache/apk/* \

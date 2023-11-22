@@ -1,0 +1,15 @@
+version: '3.3'
+services:
+  xcdn:
+    image: helloz/xcdn:xcdn202111172143
+    #environment:
+      
+    network_mode: "host"
+    volumes:
+      - ../wwwroot:/var/www/html
+      - ./data:/data/xcdn
+      - ./logs:/data/logs
+      - ./conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      
+    restart:
+      always
