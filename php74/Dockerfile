@@ -9,8 +9,9 @@ RUN apk add --no-cache autoconf g++ make libxslt libxslt-dev libxml2 libxml2-dev
     && docker-php-ext-enable imagick \
     && pecl install redis \ 
     && no | docker-php-ext-enable redis \
-    && apk del freetype-dev libjpeg-turbo-dev libpng-dev icu-dev libxml2-dev libxslt-dev autoconf g++ make imagemagick-dev \ 
-    && rm -rf /var/cache/apk/*
+    && apk del freetype-dev libjpeg-turbo-dev libpng-dev libxml2-dev libxslt-dev autoconf g++ make imagemagick-dev \ 
+    && rm -rf /var/cache/apk/* \
+    && mkdir -p /usr/local/log/
 
 
 # 复制自定义PHP-FPM配置文件到容器
