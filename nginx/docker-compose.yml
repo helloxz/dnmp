@@ -1,7 +1,8 @@
 version: '3'
 services:
-  xcdn:
-    image: helloz/xcdn:alpine-1.24.0
+  nginx:
+    image: helloz/nginx:alpine-1.24.0
+    container_name: nginx
     #environment:
       
     network_mode: "host"

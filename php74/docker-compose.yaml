@@ -4,6 +4,7 @@ services:
   php-fpm:
     image: helloz/php:7.4-fpm-alpine
     network_mode: host
+    container_name: php-7.4
     volumes:
       - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./php.ini:/usr/local/etc/php/conf.d/php.ini
