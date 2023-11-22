@@ -11,7 +11,8 @@ RUN apk add --no-cache autoconf g++ make libxslt libxslt-dev libxml2 libxml2-dev
     && no | docker-php-ext-enable redis \
     && apk del freetype-dev libjpeg-turbo-dev libpng-dev libxml2-dev libxslt-dev autoconf g++ make imagemagick-dev \ 
     && rm -rf /var/cache/apk/* \
-    && mkdir -p /usr/local/log
+    && mkdir -p /usr/local/log \
+    && sed -i 's/9000/127.0.0.1:9074/' /usr/local/etc/php-fpm.d/zz-docker.conf
 
 
 # 复制自定义PHP-FPM配置文件到容器
