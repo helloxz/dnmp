@@ -9,7 +9,6 @@ services:
     volumes:
       - ../wwwroot:/var/www/html
       - ./data:/data/xcdn
-      - ./logs:/data/logs
       - ./conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
       
     restart:
