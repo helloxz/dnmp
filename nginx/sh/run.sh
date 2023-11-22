@@ -28,9 +28,9 @@ function run_check(){
 	if [ ! -f "/data/xcdn/logs/error.log" ]
 	then
 		#创建日志文件夹
-	    mkdir -p /data/logs;
-	    touch /data/logs/error.log
-	    touch /data/logs/stream-access.log
+	    mkdir -p /data/xcdn/logs;
+	    touch /data/xcdn/logs/error.log
+	    touch /data/xcdn/logs/stream-access.log
 	fi
 
 }
