@@ -37,9 +37,9 @@ set_time(){
 
 install_before(){
 	#脚本添加执行权限
-	chmod +x /root/*.sh
-	cp /root/run.sh /usr/sbin/
-	cp /root/xc.sh /usr/sbin/
+	chmod +x /opt/*.sh
+	cp /opt/run.sh /usr/sbin/
+	cp /opt/xc.sh /usr/sbin/
 	#创建软连接
 	ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
 	#创建缓存文件夹
@@ -61,6 +61,8 @@ install_nginx(){
 	#环境变量与服务
 	echo "export PATH=$PATH:/usr/local/nginx/sbin" >> /etc/profile
 	export PATH=$PATH:'/usr/local/nginx/sbin'
+	# 设置权限
+	chown -R nginx:nginx /usr/local/nginx
 
 	#日志分割
 	#wget --no-check-certificate https://raw.githubusercontent.com/helloxz/nginx-cdn/master/etc/logrotate.d/nginx -P /etc/logrotate.d/
@@ -74,15 +76,15 @@ install_nginx(){
 add_crontab() {
 	echo "添加定时任务"
 	# 检测配置文件和SSL证书变化
-	echo "*/3    *       *       *       *       /root/xc.sh check_change" >> /etc/crontabs/root
+	echo "*/3    *       *       *       *       /opt/xc.sh check_change" >> /etc/crontabs/opt
 	# 日志分割
-	echo "50     23       *       *       *       /usr/sbin/logrotate -f /etc/logrotate.d/nginx" >> /etc/crontabs/root
+	echo "50     23       *       *       *       /usr/sbin/logrotate -f /etc/logrotate.d/nginx" >> /etc/crontabs/opt
 }
 
 #清理工作
 clean_work(){
 	rm -rf /var/cache/apk/*
-	rm -rf /root/.cache
+	rm -rf /opt/.cache
 	rm -rf /tmp/*
 }
 

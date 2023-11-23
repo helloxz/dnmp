@@ -1,15 +1,19 @@
 #基于哪个镜像制作,3.14会有问题
 FROM alpine:3.13
+RUN addgroup -S nginx && adduser -S nginx -G nginx
+USER nginx
 #工作目录
-WORKDIR /root
-#复制脚本到root目录
-COPY sh/* /root/
-#复制配置文件
-COPY conf/* /root/
+WORKDIR /opt
+# 确保 nginx 用户有权限访问复制的文件
+COPY --chown=nginx:nginx sh/* /opt/
 #执行安装脚本
+# 切换到 root 用户进行安装
+USER root
 RUN sh install_nginx.sh
-#暴露站点文件夹
-VOLUME /data/xcdn
+
+# 切换回 nginx 用户
+USER nginx
+
 #健康检查
 HEALTHCHECK --interval=10s --timeout=5s \
   CMD curl -fs http://localhost/ || exit 1
