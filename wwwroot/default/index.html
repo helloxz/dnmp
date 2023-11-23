@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to DNMP</title>
+    <link href="https://libs.xiaoz.top/bootstrap/4.6.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 20px;
+            background-color: #f4f4f4; /* 轻微的灰色背景 */
+        }
+        .jumbotron {
+            background-color: #fff; /* 亮色背景提高对比度 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 轻微的阴影效果 */
+        }
+        .btn {
+            margin: 5px; /* 增加按钮间距 */
+        }
+        @media (max-width: 768px) {
+            .btn {
+                width: 100%; /* 在较小的屏幕上按钮占满整行 */
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome to DNMP!</h1>
+            <p class="lead">DNMP is a powerful stack for web development, combining Docker, Nginx, MySQL, and PHP.</p>
+            <hr class="my-4">
+            <p>Learn more about how DNMP can streamline your development process and make your projects more efficient.</p>
+            <div class="button-container">
+                <a class="btn btn-primary" href="#" role="button" target = "_blank">Project address</a>
+                <a class="btn btn-secondary" href="#" role="button" target = "_blank">Help documentation</a>
+                <a class="btn btn-success" href="/phpMyAdmin/index.php" role="button" target = "_blank">Open phpMyAdmin</a>
+                <!-- More buttons can be added here in future -->
+            </div>
+        </div>
+    </div>
+
+    <!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.1.16/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+</body>
+</html>

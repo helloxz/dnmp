@@ -12,6 +12,7 @@ services:
       - ./conf/vhost:/usr/local/nginx/conf/vhost
       - ./conf/stream:/usr/local/nginx/conf/stream
       - ./logs:/usr/local/nginx/logs
+      - ./ssl:/usr/local/nginx/conf/ssl
       
     restart:
       always

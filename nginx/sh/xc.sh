@@ -9,6 +9,11 @@
 NGINX_PATH="/usr/local/nginx"
 nginx="${NGINX_PATH}/sbin/nginx"
 
+# 配置文件路径
+CONF_PATH="${NGINX_PATH}/conf/"
+# SSL证书路径
+SSL_PATH="${CONF_PATH}/ssl/"
+
 #获取用户传递的参数
 arg1=$1
 
@@ -45,6 +50,14 @@ function check_conf() {
     $nginx -t
 }
 
+# 检查配置/SSL证书是否有更新，有更新则重载
+function check_change() {
+    find ${CONF_PATH}/conf/ -mmin -1 -exec /usr/sbin/xc.sh reload {} +
+	echo '-------------------------------------'
+	sleep 3
+	find ${SSL_PATH}/ssl/ -mmin -1 -exec /usr/sbin/xc.sh reload {} +
+}
+
 
 # 根据用户输入执行不同动作
 case ${arg1} in
@@ -62,6 +75,9 @@ case ${arg1} in
     ;;
     '-t')
         check_conf
+    ;;
+    'check_change')
+        check_change
     ;;
     *) 
         echo 'Parameter error!'

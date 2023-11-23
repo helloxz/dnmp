@@ -43,7 +43,9 @@ install_before(){
 	#创建软连接
 	ln -s /usr/local/nginx/sbin/nginx /usr/sbin/nginx
 	#创建缓存文件夹
-	mkdir -p /data/caches
+	# mkdir -p /data/caches
+	# 创建SSL证书文件夹
+	mkdir -p /usr/local/nginx/conf/ssl
 	#创建站点文件夹
 	mkdir -p /var/www/html
 }
@@ -71,7 +73,9 @@ install_nginx(){
 #添加定时任务
 add_crontab() {
 	echo "添加定时任务"
-	# echo "*/3    *       *       *       *       /root/pull.sh" >> /etc/crontabs/root
+	# 检测配置文件和SSL证书变化
+	echo "*/3    *       *       *       *       /root/xc.sh check_change" >> /etc/crontabs/root
+	# 日志分割
 	echo "50     23       *       *       *       /usr/sbin/logrotate -f /etc/logrotate.d/nginx" >> /etc/crontabs/root
 }
 
