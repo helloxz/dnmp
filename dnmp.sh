@@ -139,6 +139,7 @@ stop(){
     run_check
     # 获取用户传递的第二个参数
     service=$2
+    echo $service
     # 如果service为空，或者为all，则停止所有服务
     if [ "${service}" = "" ] || [ "${service}" = "all" ]
     then
