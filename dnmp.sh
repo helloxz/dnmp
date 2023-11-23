@@ -86,8 +86,8 @@ start(){
     # 运行前检查
     run_check
     # 获取用户传递的第二个参数
-    service=$2
-    echo $service
+    service=$1
+
     # 如果service为空，或者为all，则运行所有服务
     if [ "${service}" = "" ] || [ "${service}" = "all" ]
     then
@@ -141,8 +141,8 @@ stop(){
     # 运行前检查
     run_check
     # 获取用户传递的第二个参数
-    service=$2
-    echo $service
+    service=$1
+    
     # 如果service为空，或者为all，则停止所有服务
     if [ "${service}" = "" ] || [ "${service}" = "all" ]
     then
@@ -194,10 +194,10 @@ case $1 in
         init
     ;;
     'start')
-        start
+        start ${2}
     ;;
     'stop')
-        stop
+        stop ${2}
     ;;
     *)
         echo "Usage: $0 {init|run|stop}"
