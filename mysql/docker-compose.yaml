@@ -6,6 +6,7 @@ services:
     env_file: .env
     restart: always
     network_mode: host
+    user: "${USER_ID}:${GROUP_ID}"
     volumes:
       - './data:/var/lib/mysql'  
       - './my.cnf:/etc/mysql/my.cnf'

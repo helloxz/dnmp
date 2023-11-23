@@ -6,7 +6,7 @@ services:
     network_mode: host
     container_name: php-7.4
     # Specify User ID and User Group
-    # user: "1000:1000"
+    user: "${USER_ID}:${GROUP_ID}"
     volumes:
       - ./www.conf:/usr/local/etc/php-fpm.d/www.conf
       - ./php.ini:/usr/local/etc/php/conf.d/php.ini
