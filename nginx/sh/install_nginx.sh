@@ -52,6 +52,8 @@ install_before(){
 
 #安装nginx
 install_nginx(){
+	# 创建用户
+	addgroup -S nginx && adduser -S nginx -G nginx
 	cd /usr/local
 	NGINX_NAME=xcdn-binary-alpine-${nginx_version}-${THEDATE}_x86_64.tar.gz
 	wget http://soft.xiaoz.org/xcdn/${NGINX_NAME}
@@ -63,6 +65,7 @@ install_nginx(){
 	export PATH=$PATH:'/usr/local/nginx/sbin'
 	# 设置权限
 	chown -R nginx:nginx /usr/local/nginx
+	chown -R nginx:nginx /opt
 
 	#日志分割
 	#wget --no-check-certificate https://raw.githubusercontent.com/helloxz/nginx-cdn/master/etc/logrotate.d/nginx -P /etc/logrotate.d/
