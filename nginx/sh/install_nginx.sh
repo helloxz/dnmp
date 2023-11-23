@@ -2,7 +2,7 @@
 
 #http://soft.xiaoz.org/xcdn/xcdn-binary-alpine-1.20.2-20220518_x86_64.tar.gz
 nginx_version='1.24.0'
-THEDATE='20231121'
+THEDATE='20231123'
 #安装依赖
 depend(){
 	apk update
