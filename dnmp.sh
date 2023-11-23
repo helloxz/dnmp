@@ -14,7 +14,8 @@ then
     USER_ID=$(id -u ${USER})
     GROUP_ID=$(id -g ${USER})
 
-    echo $USER_ID
+    export USER_ID=${USER_ID}
+    export GROUP_ID=${GROUP_ID}    
 fi
 
 # 服务列表
