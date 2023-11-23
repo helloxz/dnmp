@@ -52,10 +52,10 @@ function check_conf() {
 
 # 检查配置/SSL证书是否有更新，有更新则重载
 function check_change() {
-    find ${CONF_PATH}/conf/ -mmin -1 -exec /usr/sbin/xc.sh reload {} +
+    find ${CONF_PATH} -mmin -1 -exec /usr/sbin/xc.sh reload {} +
 	echo '-------------------------------------'
 	sleep 3
-	find ${SSL_PATH}/ssl/ -mmin -1 -exec /usr/sbin/xc.sh reload {} +
+	find ${SSL_PATH} -mmin -1 -exec /usr/sbin/xc.sh reload {} +
 }
 
 
