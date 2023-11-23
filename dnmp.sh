@@ -48,6 +48,7 @@ init(){
     fi
     # 替换.env文件中的MYSQL_ROOT_PASSWORD变量
     sed -i "s/MYSQL_ROOT_PASSWORD=root3306/MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}/g" ${CURRENT_DIR}/.env
+    sed -i "s/MYSQL_ROOT_PASSWORD=root3306/MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}/g" ${CURRENT_DIR}/mysql/.env
     # 加载环境变量
     source ${CURRENT_DIR}/.env
 }
