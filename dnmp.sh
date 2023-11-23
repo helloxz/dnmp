@@ -13,6 +13,8 @@ then
     # 根据.env里面的变量，设置用户ID和组ID
     USER_ID=$(id -u ${USER})
     GROUP_ID=$(id -g ${USER})
+
+    echo $USER_ID
 fi
 
 # 服务列表
