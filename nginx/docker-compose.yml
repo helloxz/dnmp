@@ -3,7 +3,6 @@ services:
   nginx:
     image: helloz/nginx:alpine-1.24.0
     container_name: nginx
-    user: "${USER_ID}:${GROUP_ID}"
     #environment:
       
     network_mode: "host"
