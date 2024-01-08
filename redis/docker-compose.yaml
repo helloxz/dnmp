@@ -9,4 +9,4 @@ services:
    restart: always
    volumes:
      - ./data:/data
-     - ./redis.conf:/data/redis.conf
+     - ./data/redis.conf:/data/redis.conf
