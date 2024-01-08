@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+ redis:
+   image: redis:6.2.6-alpine
+   container_name: redis
+   network_mode: host
+   restart: always
+   volumes:
+     - ./data:/data
+     - ./redis.conf:/data/redis.conf
