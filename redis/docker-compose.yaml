@@ -1,12 +1,12 @@
-version: '3.8'
-
+version: "3.8"
 services:
  redis:
    image: redis:6.2.6-alpine
    container_name: redis
    # user: "${USER_ID}:${GROUP_ID}"
-   network_mode: host
+   network_mode: "host"
    restart: always
    volumes:
      - ./data:/data
      - ./data/redis.conf:/data/redis.conf
+   command: ["redis-server", "/data/redis.conf"]
