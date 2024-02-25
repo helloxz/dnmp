@@ -211,6 +211,8 @@ install(){
             wget https://soft.xiaoz.org/php/sourceCode/phpMyAdmin/phpMyAdmin-5.2.1.zip
             unzip -o phpMyAdmin-5.2.1.zip
             rm -rf phpMyAdmin-5.2.1.zip
+            # 修改phpmyadmin目录权限
+            chown -R ${USER}:${USER} ./
         ;;
         'runtime')
             install_rumtime
