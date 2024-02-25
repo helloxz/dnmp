@@ -21,6 +21,11 @@ fi
 # 服务列表
 services=(nginx mysql php74)
 
+# 安装运行环境
+install_rumtime(){
+    apt-get update
+    apt-get install -y curl wget unzip git
+}
 
 # 初始化运行
 init(){
@@ -188,6 +193,37 @@ stop(){
     fi
 }
 
+# 安装服务
+install(){
+	# 获取用户参数
+	name=$1
+    # 如果name为空，则提示参数错误
+    if [ "${name}" = "" ]
+    then
+        echo "Usage: $0 install {phpmyadmin}"
+        exit
+    fi
+
+    # 如果name为phpmyadmin，则安装phpmyadmin，使用case
+    case $name in
+        'phpmyadmin')
+            cd wwwroot/default
+            wget https://soft.xiaoz.org/php/sourceCode/phpMyAdmin/phpMyAdmin-5.2.1.zip
+            unzip -o phpMyAdmin-5.2.1.zip
+            rm -rf phpMyAdmin-5.2.1.zip
+        ;;
+        'runtime')
+            install_rumtime
+        ;;
+        *)
+            echo "Usage: $0 install {phpmyadmin}"
+        ;;
+    esac
+    
+	
+}
+
+
 # 通过case判断用户输入的第一个参数，然后执行对应函数的动作
 case $1 in
     'init')
@@ -198,6 +234,9 @@ case $1 in
     ;;
     'stop')
         stop ${2}
+    ;;
+    'install')
+        install ${2}
     ;;
     *)
         echo "Usage: $0 {init|run|stop}"
