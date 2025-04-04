@@ -28,7 +28,7 @@ services:
     restart: on-failure
 
   mysql:
-    image: 8.0-debian
+    image: mysql:8.0-debian
     container_name: mysql8
     # env_file: ./mysql/.env
     restart: always
