@@ -1,0 +1,57 @@
+services:
+  nginx:
+    image: helloz/nginx:alpine-1.24.0
+    container_name: nginx
+    network_mode: "host"
+    volumes:
+      - ./wwwroot:/var/www/html
+      - ./nginx/conf/nginx.conf:/usr/local/nginx/conf/nginx.conf
+      - ./nginx/conf/vhost:/usr/local/nginx/conf/vhost
+      - ./nginx/conf/stream:/usr/local/nginx/conf/stream
+      - ./nginx/logs:/usr/local/nginx/logs
+      - ./nginx/ssl:/usr/local/nginx/conf/ssl
+    restart: always
+
+  php-fpm:
+    image: helloz/php:7.4-fpm-alpine
+    network_mode: host
+    container_name: php-7.4
+    environment:
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+    user: "${USER_ID}:${GROUP_ID}"
+    volumes:
+      - ./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php74/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./php74/log:/usr/local/log
+      - ./wwwroot:/var/www/html
+    restart: on-failure
+
+  mysql:
+    image: 8.0-debian
+    container_name: mysql8
+    # env_file: ./mysql/.env
+    restart: always
+    network_mode: host
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+    user: "${USER_ID}:${GROUP_ID}"
+    volumes:
+      - './mysql/data:/var/lib/mysql'  
+      - './mysql/my.cnf:/etc/mysql/my.cnf'
+
+  redis:
+    image: redis:6.2.6-alpine
+    container_name: redis
+    environment:
+      - USER_ID=${USER_ID}
+      - GROUP_ID=${GROUP_ID}
+    user: "${USER_ID}:${GROUP_ID}"
+    network_mode: "host"
+    restart: always
+    volumes:
+      - ./redis/data:/data
+      - ./redis/data/redis.conf:/data/redis.conf
+    command: ["redis-server", "/data/redis.conf"]
