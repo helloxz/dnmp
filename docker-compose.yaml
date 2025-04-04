@@ -41,6 +41,7 @@ services:
     volumes:
       - './mysql/data:/var/lib/mysql'  
       - './mysql/my.cnf:/etc/mysql/my.cnf'
+      - './mysql/mysql-file:/var/lib/mysql-file'
 
   redis:
     image: redis:6.2.6-alpine
