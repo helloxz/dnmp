@@ -225,9 +225,33 @@ install(){
 	
 }
 
+# 运行服务
+run(){
+    # 运行前检查
+    run_check
+    # 创建所需目录，并赋予权限
+    mkdir -p mysql/data
+    mkdir -p mysql/mysql-files
+    mkdir -p nginx/logs
+    mkdir -p nginx/ssl
+    mkdir -p php74/log
+    chown -R ${USER_ID}:${GROUP_ID} mysql
+    chown -R ${USER_ID}:${GROUP_ID} nginx
+    chown -R ${USER_ID}:${GROUP_ID} php74
+    # 运行docker-compose
+    docker-compose up -d
+    # 运行完成后，提示用户
+    echo '------------------------------------------------------'
+    echo "The dnmp service start success."
+    echo '------------------------------------------------------'
+}
+
 
 # 通过case判断用户输入的第一个参数，然后执行对应函数的动作
 case $1 in
+    'run')
+        run
+    ;;
     'init')
         init
     ;;

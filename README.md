@@ -7,9 +7,7 @@ Learn more about how DNMP can streamline your development process and make your 
 ```bash
 git clone https://github.com/helloxz/dnmp.git
 cd dnmp
-bash dnmp.sh init
-# install redis
-bash dnmp.sh start redis
+bash dnmp.sh run
 # install phpmyadmin
 bash dnmp.sh install runtime
 bash dnmp.sh install phpmyadmin
@@ -20,6 +18,5 @@ bash dnmp.sh install phpmyadmin
 ```bash
 # reload nginx config
 docker exec -it nginx xc.sh reload
-
 ```
 
