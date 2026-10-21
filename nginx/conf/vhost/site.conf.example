@@ -1,3 +1,7 @@
+# PHP 版本通过 fastcgi_pass 的端口选择：
+#   127.0.0.1:9074 => PHP 7.4（默认）
+#   127.0.0.1:9083 => PHP 8.3
+# 把下面 location ~ \.php$ 中的端口改成 9083 即可让本站点使用 PHP 8.3
 server {
   listen 80;
 

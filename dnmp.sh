@@ -19,7 +19,7 @@ then
 fi
 
 # 服务列表
-services=(nginx mysql php74)
+services=(nginx mysql php74 php83)
 
 # 安装运行环境
 install_rumtime(){
@@ -86,6 +86,17 @@ run_check(){
     fi
 }
 
+# PHP服务启动前准备日志目录（目录不存在时docker会以root创建，导致容器内无法写入日志）
+prepare_service(){
+    svc=$1
+    case "${svc}" in
+        php74|php83)
+            mkdir -p "${CURRENT_DIR}/${svc}/log"
+            chown -R ${USER_ID}:${GROUP_ID} "${CURRENT_DIR}/${svc}/log"
+        ;;
+    esac
+}
+
 # 运行docker服务
 start(){
     # 运行前检查
@@ -102,6 +113,8 @@ start(){
             # 拼接当前目录 + service，判断目录是否存在
             if [ -d "${CURRENT_DIR}/${svc}" ]
             then
+                # 准备日志目录
+                prepare_service ${svc}
                 # 进入到service目录
                 cd ${CURRENT_DIR}/${svc}
                 # 重置目录权限
@@ -124,6 +137,8 @@ start(){
     # 拼接当前目录 + service，判断目录是否存在
     if [ -d "${CURRENT_DIR}/${service}" ]
     then
+        # 准备日志目录
+        prepare_service ${service}
         # 进入到service目录
         cd ${CURRENT_DIR}/${service}
         # 运行docker-compose
@@ -235,9 +250,11 @@ run(){
     mkdir -p nginx/logs
     mkdir -p nginx/ssl
     mkdir -p php74/log
+    mkdir -p php83/log
     chown -R ${USER_ID}:${GROUP_ID} mysql
     chown -R ${USER_ID}:${GROUP_ID} nginx
     chown -R ${USER_ID}:${GROUP_ID} php74
+    chown -R ${USER_ID}:${GROUP_ID} php83
     # 运行docker-compose
     docker-compose up -d
     # 运行完成后，提示用户
