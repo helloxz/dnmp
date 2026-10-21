@@ -12,18 +12,35 @@ services:
       - ./nginx/ssl:/usr/local/nginx/conf/ssl
     restart: always
 
-  php-fpm:
-    image: helloz/php:7.4-fpm-alpine
+  # PHP 7.4（按需启动：bash dnmp.sh start php74）
+  # php-fpm:
+  #   image: helloz/php:7.4-fpm-alpine
+  #   network_mode: host
+  #   container_name: php-7.4
+  #   environment:
+  #     - USER_ID=${USER_ID}
+  #     - GROUP_ID=${GROUP_ID}
+  #   user: "${USER_ID}:${GROUP_ID}"
+  #   volumes:
+  #     - ./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf
+  #     - ./php74/php.ini:/usr/local/etc/php/conf.d/php.ini
+  #     - ./php74/log:/usr/local/log
+  #     - ./wwwroot:/var/www/html
+  #   restart: on-failure
+
+  # PHP 8.3（默认启动）
+  php83-fpm:
+    image: helloz/php:8.3-fpm-alpine
     network_mode: host
-    container_name: php-7.4
+    container_name: php-8.3
     environment:
       - USER_ID=${USER_ID}
       - GROUP_ID=${GROUP_ID}
     user: "${USER_ID}:${GROUP_ID}"
     volumes:
-      - ./php74/www.conf:/usr/local/etc/php-fpm.d/www.conf
-      - ./php74/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./php74/log:/usr/local/log
+      - ./php83/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./php83/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./php83/log:/usr/local/log
       - ./wwwroot:/var/www/html
     restart: on-failure
 

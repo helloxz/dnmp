@@ -18,8 +18,8 @@ then
     export GROUP_ID=${GROUP_ID}    
 fi
 
-# 服务列表
-services=(nginx mysql php74 php83)
+# 服务列表（默认启动 PHP 8.3，7.4 可通过 start php74 按需启动）
+services=(nginx mysql php83)
 
 # 安装运行环境
 install_rumtime(){
