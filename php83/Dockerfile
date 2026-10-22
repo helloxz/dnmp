@@ -2,7 +2,7 @@
 # 构建并推送镜像：
 # docker build -t helloz/php:8.3-fpm-alpine .
 # docker push helloz/php:8.3-fpm-alpine
-FROM php:8.3.36-fpm-alpine3.22
+FROM php:8.3.36-fpm-alpine
 
 # 安装gd扩展和其他扩展的依赖
 RUN apk add --no-cache autoconf g++ make linux-headers libxslt libxslt-dev libxml2 libxml2-dev icu-dev freetype-dev libjpeg-turbo-dev libpng-dev libzip-dev libpng libjpeg-turbo gettext-dev \
